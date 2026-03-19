@@ -11,6 +11,8 @@
            "packages": "cli,rlang",
             "installSystemRequirements": true
         },
+		// rstudio server
+		"ghcr.io/rocker-org/devcontainer-features/rstudio-server": {},
 	  // quarto cli
 	  // more info: https://github.com/rocker-org/devcontainer-features/blob/main/src/quarto-cli/README.md
 	  "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {
@@ -25,8 +27,18 @@
 				"peakchen90.open-html-in-browser"
 			]
 		}
-	} //, // need comman if add more after features
-
+	},
+	"postAttachCommand": {
+        "rstudio-start": "rserver"
+    },
+    "forwardPorts": [
+        8787
+    ],
+    "portsAttributes": {
+        "8787": {
+            "label": "RStudio IDE"
+        }
+    }
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
